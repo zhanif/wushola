@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Wushola</string>
+    <string name="placeholderTime">--:--</string>
+    <string name="subuh">Subuh</string>
+    <string name="dzuhur">Dzuhur</string>
+    <string name="ashar">Ashar</string>
+    <string name="maghrib">Maghrib</string>
+    <string name="isya">Isya</string>
+    <string name="placeholder_time">Selasa, 1 Januari 1980</string>
+</resources>

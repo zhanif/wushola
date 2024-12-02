@@ -1,0 +1,30 @@
+[versions]
+agp = "8.6.0-alpha07"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.6.1"
+lombok = "1.18.36"
+lombokVersion = "1.18.36"
+material = "1.10.0"
+retrofit = "2.9.0"
+roomRxjava2 = "2.6.1"
+
+[libraries]
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRxjava2" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRxjava2" }
+androidx-room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "roomRxjava2" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+lombok-v11836 = { module = "org.projectlombok:lombok", version.ref = "lombokVersion" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "roomRxjava2" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+
