@@ -18,11 +18,9 @@ import java.util.*;
 public class PrayerContext {
     private static final String BASE_URL = "https://api.myquran.com/";
     private final PrayerTimesDatabase db;
-    private Context context;
 
     public PrayerContext(Context context) {
         this.db = PrayerTimesDatabase.getInstance(context);
-        this.context = context;
     }
 
     public SimpleDateFormat getSimpleDateFormat(String format) {
@@ -39,13 +37,8 @@ public class PrayerContext {
 
     public String getPrayerTime(String prayerTime, String date) {
         Schedule schedule = db.scheduleDao().getByDate(date);
-        Locale indonesianLocale = new Locale("id", "ID");
 
-        System.out.println(Arrays.toString(db.scheduleDao().getAll()));
-        System.out.println(date);
-        System.out.println(schedule);
         if (schedule == null) return "--:--";
-
         Map<String, String> prayerTimes = Map.of(
             "imsak", schedule.getImsak(),
             "subuh", schedule.getSubuh(),
@@ -71,16 +64,11 @@ public class PrayerContext {
         PrayerTimesService timesService = retrofit.create(PrayerTimesService.class);
         timesService.getPrayerTimes(number, String.valueOf(year), String.valueOf(month)).enqueue(new Callback<ListScheduleDTO>() {
             @Override
-            public void onResponse(Call<ListScheduleDTO> call, Response<ListScheduleDTO> response) {
+            public void onResponse(@NotNull Call<ListScheduleDTO> call, Response<ListScheduleDTO> response) {
              if (response.isSuccessful() && response.body() != null) {
                     List<Schedule> jadwal = response.body().getData().getJadwal();
-
-                 System.out.println(jadwal);
-
                     db.scheduleDao().truncate();
                     db.scheduleDao().insertAll(jadwal);
-
-                 System.out.println(db.scheduleDao().getAll());
                 }
             }
 
