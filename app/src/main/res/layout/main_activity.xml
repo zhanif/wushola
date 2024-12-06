@@ -2,25 +2,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="16dp">
+                android:background="#eee"
+                android:paddingHorizontal="32sp">
 
     <TextView
-            android:id="@+id/hello_text"
+            android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello!"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="16dp" />
+            android:text="Wushola"
+            android:textSize="28sp"
+            android:layout_marginTop="64sp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="#333" />
 
+    <TextView
+            android:id="@+id/subtitle_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Widget untuk Waktu Sholat"
+            android:layout_below="@id/title_text"
+    />
     <Button
             android:id="@+id/sync_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sinkronisasi Jadwal Sholat"
-            android:layout_below="@id/hello_text"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/subtitle_text"
+            android:text="♻️   Sinkronisasi"
+            android:fontFamily="@font/poppins_semibold"
+            android:textAllCaps="false"
+            android:letterSpacing="0"
+            android:textSize="16sp"
+            android:textAlignment="textStart"
+            android:paddingVertical="20sp"
             android:backgroundTint="@color/dark_aqua"
-            android:layout_centerHorizontal="true" />
+    />
+
+    <Button
+            android:id="@+id/refresh_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sync_button"
+            android:text="🍂    Perbarui Widget"
+            android:fontFamily="@font/poppins_semibold"
+            android:textAllCaps="false"
+            android:letterSpacing="0"
+            android:textSize="16sp"
+            android:textAlignment="textStart"
+            android:textColor="#333"
+            android:paddingVertical="20sp"
+            android:backgroundTint="#FFF"
+    />
 
 </RelativeLayout>

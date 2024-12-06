@@ -28,32 +28,42 @@ public class MainActivity extends AppCompatActivity {
         prayerContext = new PrayerContext(getApplicationContext());
 
         this.registerEvents();
+        this.refreshWidget();
         this.scheduleUpdateForPrayerTimes();
+    }
+
+    private void refreshWidget() {
+        Context context = getApplicationContext();
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        ComponentName componentName = new ComponentName(context, MainWidget.class);
+
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
+        new MainWidget().refresh(context, appWidgetManager, appWidgetIds);
     }
 
     private void registerEvents() {
         Button syncButton = findViewById(R.id.sync_button);
+        Button refreshButton = findViewById(R.id.refresh_button);
 
         try {
-            syncButton.setOnClickListener(handleSyncButtonOnClick());
+            syncButton.setOnClickListener(v -> handleSyncButtonOnClick());
+            refreshButton.setOnClickListener(v -> handleRefreshButtonOnClick());
         }
         catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
 
-    private View.OnClickListener handleSyncButtonOnClick() {
-        return view -> {
-            prayerContext.reloadAPI("1223", 2024, 12);
-            Toast.makeText(this, "Berhasil mensinkronisasi jadwal sholat", Toast.LENGTH_SHORT).show();
+    private void handleRefreshButtonOnClick() {
+        refreshWidget();
+        Toast.makeText(this, "Berhasil memperbarui tampilan widget", Toast.LENGTH_SHORT).show();
+    }
 
-            Context context = getApplicationContext();
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            ComponentName componentName = new ComponentName(context, MainWidget.class);
+    private void handleSyncButtonOnClick() {
+        prayerContext.reloadAPI("1223", 2024, 12);
+        Toast.makeText(this, "Berhasil mensinkronisasi jadwal sholat", Toast.LENGTH_SHORT).show();
 
-            int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
-            new MainWidget().refresh(context, appWidgetManager, appWidgetIds);
-        };
+        this.refreshWidget();
     }
 
     private void scheduleUpdateForPrayerTimes() {

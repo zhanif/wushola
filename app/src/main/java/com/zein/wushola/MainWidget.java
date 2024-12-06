@@ -28,7 +28,6 @@ public class MainWidget extends AppWidgetProvider {
             boolean isColorChanged = false;
 
             views.setTextViewText(R.id.currentDateTime, prayerContext.getSimpleDateFormat("EEEE, dd MMMM yyyy").format(new Date()) + " - Cimahi");
-
             for (String prayer : prayerTimes) {
                 String time = prayerContext.getPrayerTime(prayer, currentDate);
                 int labelResId = context.getResources().getIdentifier(prayer + "Label", "id", context.getPackageName());
@@ -45,7 +44,6 @@ public class MainWidget extends AppWidgetProvider {
                     views.setTextColor(timeResId, Color.WHITE);
                 }
             }
-
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
     }
